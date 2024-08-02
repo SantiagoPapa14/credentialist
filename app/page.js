@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { getSession, login, logout } from "@/authLib";
+import { getSession, login, logout } from "@/lib/authLib";
 import { Box, TextField, Button, Typography } from '@mui/material';
 import '@/styles/globals.css';
 
@@ -25,7 +25,7 @@ export default async function Home() {
         <Box component="form" action={async (formData) => {
             "use server";
             await login(formData);
-            redirect("/");
+            redirect("/credentials");
           }} noValidate sx={{ 
             display: 'flex',
             flexDirection: 'column',
@@ -61,6 +61,7 @@ export default async function Home() {
             required
             id="outlined-required"
             name="password"
+            type='password'
             label="Password"
             defaultValue=""
             sx={{ mt: 3, mb: 2}}
