@@ -1,7 +1,9 @@
+'use server';
+import * as React from 'react';
 import { redirect } from "next/navigation";
 import { getSession, login, logout } from "@/lib/authLib";
-import { selectCredentials } from "@/lib/sqlLib";
-import { Box, TextField, Button, Typography } from '@mui/material';
+import { selectServicesAndUsernames } from "@/lib/sqlLib";
+import MyDataGrid from "@/components/MyDataGrid";
 import '@/styles/globals.css';
 
 export default async function Home() {
@@ -10,18 +12,11 @@ export default async function Home() {
         redirect("/");
         return null;
     }else if(session.hasLogged == 1404039529){
-        const passwords = await selectCredentials();
+        const rows = await selectServicesAndUsernames();
         return (
-            <Typography variant="h5" component="h1" sx={{ 
-                mb: 1, 
-                textAlign: 'center', 
-                fontFamily: 'Arial, sans-serif',
-                fontWeight: 'bold',
-                fontSize: '15px',
-                color: '#333',
-            }}>
-            {JSON.stringify(passwords)}
-        </Typography>
+            <div style={{ height: 400, width: '100%' }}>
+                <MyDataGrid rows={rows}></MyDataGrid>
+            </div>
         );
     }
 }
