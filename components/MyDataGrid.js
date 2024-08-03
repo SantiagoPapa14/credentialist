@@ -18,7 +18,15 @@ export default function ServiceAndUserDataGrid({ rows }) {
         <Button
           variant="contained"
           color="primary"
-          onClick={() => ''}
+          onClick={async () => console.log(
+            await fetch('/api/getDecrypted', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ service: params.row['service'], username: params.row['username'], masterKey:" " }),
+              })
+          )}
         >
           Decrypt
         </Button>
