@@ -1,12 +1,13 @@
+'use server';
 import { redirect } from "next/navigation";
-import { getSession, login, logout } from "@/lib/authLib";
+import { getSession, login } from "@/lib/authLib";
 import { Box, TextField, Button, Typography } from '@mui/material';
 import '@/styles/globals.css';
 
 export default async function Home() {
   const session = await getSession();
   return (
-    <Box sx={{
+    <Box sx={{ //Background image and wrapper
       position: 'absolute',
       top: 0,
       left: 0,
@@ -22,7 +23,7 @@ export default async function Home() {
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
     }}>
-        <Box component="form" action={async (formData) => {
+        <Box component="form" action={async (formData) => { //Main Form
             "use server";
             await login(formData);
             redirect("/credentials");
@@ -37,7 +38,7 @@ export default async function Home() {
             boxShadow: 3,
           }}>
 
-          <Typography variant="h5" component="h1" sx={{ 
+          <Typography variant="h5" component="h1" sx={{ //Title
                 mb: 1, 
                 textAlign: 'center', 
                 fontFamily: 'Arial, sans-serif',
@@ -48,7 +49,7 @@ export default async function Home() {
             Credentialist
           </Typography>
 
-          <TextField
+          <TextField //Username Input
             required
             id="outlined-required"
             name="username"
@@ -57,7 +58,7 @@ export default async function Home() {
             sx={{ mt: 3, mb: 2}}
           />
           <br></br>
-          <TextField
+          <TextField //Password Input
             required
             id="outlined-required"
             name="password"
@@ -66,7 +67,7 @@ export default async function Home() {
             defaultValue=""
             sx={{ mt: 3, mb: 2}}
           />
-          <Button
+          <Button //Login Button
                 type="submit"
                 fullWidth
                 variant="contained"
