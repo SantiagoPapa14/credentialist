@@ -6,7 +6,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import LockIcon from '@mui/icons-material/Lock';
+import AddPasswordButton from "@/components/AddPasswordButton";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,12 +30,12 @@ export default function RootLayout({ children }) {
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
+            <LockIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+            Credentialist
           </Typography>
-          <Button color="inherit">Login</Button>
+          <AddPasswordButton></AddPasswordButton>
         </Toolbar>
         </AppBar>
       </Box>

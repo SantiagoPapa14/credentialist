@@ -65,7 +65,7 @@ export default function ServiceAndUserDataGrid({ rows }) {
         const data = await response.json();
         setSuccessMessage('Password copied to clipboard!');
         const decryptedPassword = decrypt(data.password, password)
-        await navigator.clipboard.writeText(data.password);
+        await navigator.clipboard.writeText(decryptedPassword);
         console.log('Response data:', decryptedPassword);
       } catch (error) {
         setError(error.message);
