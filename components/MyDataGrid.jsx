@@ -9,6 +9,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
+import {decrypt} from "@/lib/cryptoLib";
+
 export default function ServiceAndUserDataGrid({ rows }) {
   const columns = [
     { field: 'id', headerName: 'ID', width: 90 },
@@ -48,17 +50,12 @@ export default function ServiceAndUserDataGrid({ rows }) {
 
       try {
         // Replace with your API endpoint and request details
-        const queryParams = {
-          service: selectedRow.service,
-          username: selectedRow.username,
-          masterKey: password,
-        }
-        const response = await fetch('/api/getDecrypted', {
+        const response = await fetch('/api/getEncrypted', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(queryParams),
+          body: JSON.stringify(selectedRow),
         });
 
         if (!response.ok) {
@@ -67,8 +64,9 @@ export default function ServiceAndUserDataGrid({ rows }) {
 
         const data = await response.json();
         setSuccessMessage('Password copied to clipboard!');
-        await navigator.clipboard.writeText(data.password[0].password);
-        console.log('Response data:', data.password);
+        const decryptedPassword = decrypt(data.password, password)
+        await navigator.clipboard.writeText(data.password);
+        console.log('Response data:', decryptedPassword);
       } catch (error) {
         setError(error.message);
         console.error('Fetch error:', error);
