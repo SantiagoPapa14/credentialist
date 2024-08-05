@@ -1,4 +1,4 @@
-Credentialist is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Credentialist is a [Next.js](https://nextjs.org/) project.
 
 ## What it does
 The idea behind Credentialist is to have an open source secure cloud based password manager. It is based on NextJS, uses hashing and JSON web tokens for login.  It stores the AES128 encrypted passwords in an MySQL database, queries to the database are done server side, and all encryption is done client side so neither encryption keys nor decrypted passwords are ever sent. It implements the experimental HTTPS NextJS option to encrypt the body in the requests. All requests run through the middleware where the session is checked and if it fails it cannot access protected routes. Even if the packets are intercepted the passwords are only sent one at a time and continue to be encrypted until the client decrypts it with their encryption key.
