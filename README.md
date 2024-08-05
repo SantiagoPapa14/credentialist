@@ -17,7 +17,7 @@ In case it's not already set, make sure your dev uses the experimental https
 "scripts": {
     "dev": "next dev --experimental-https",
     "build": "next build",
-    "start": "next start",
+    "start": "node server.js",
     "lint": "next lint"}
 ```
 
@@ -51,6 +51,13 @@ To get it up and running just make sure the database is up and running and run (
 npm run dev
 ```
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+And if you're set up run 
+```bash
+npm run build
+npm start
+```
+Just make sure you have those certificates in place and replace their paths in server.js
 
 ## Learn More
 I'll add some diagrams further detailing how everything works in the future, but for now just keep in mind that there is a NECESSARY distinction between client side and server side react components (and libraries) to ensure no sensitive information gets routed through the internet.
