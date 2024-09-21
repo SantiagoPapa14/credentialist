@@ -1,6 +1,6 @@
 'use server';
 import { Box } from '@mui/material';
-import LoginForm from "@/components/LoginForm";
+import LoginFormNew from "@/components/LoginFormNew";
 import '@/styles/globals.css';
 
 export default async function Home() {
@@ -21,7 +21,7 @@ export default async function Home() {
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
     }}>
-        <LoginForm></LoginForm>
+        <LoginFormNew></LoginFormNew>
     </Box>
   );
 }
