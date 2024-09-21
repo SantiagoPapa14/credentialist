@@ -27,18 +27,21 @@ You need a MySQL database, and ideally a phpmyadmin access to make things easier
 - [mysql](https://ubuntu.com/server/docs/install-and-configure-a-mysql-server)
 - [phpmyadmin](https://ubuntu.com/server/docs/how-to-install-and-configure-phpmyadmin)
 
-Now that that's done, set up the following table on your database:
+Now that that's done, set up the following tables on your database:
 - credentials
 - - id (INT)
 - - service (TEXT)
 - - username (TEXT)
 - - password (TEXT)
 
+- users
+-  - id (INT)
+   - username (TEXT)
+   - hashedPassword (TEXT)
+
 Finally, set up your enviroment variables in the .env.local file at the root of your project directory. It should look something like this:
 ```bash
 JWT_SECRET='your-jwt-secret-key'
-HASHED_USER='your-hashed-username-for-login-into-the-application'
-HASHED_PASSWORD='your-hashed-password-for-login-into-the-application'
 MYSQL_HOST='your-sql-address(most likely 127.0.0.1)'
 MYSQL_PORT='your-sql-port(most likely 3306)'
 MYSQL_DATABASE='your-sql-database-name'
