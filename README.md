@@ -36,8 +36,8 @@ Now that that's done, set up the following tables on your database:
 
 - users
 -  - id (INT)
-   - username (TEXT)
-   - hashedPassword (TEXT)
+-  - username (TEXT)
+-  - hashedPassword (TEXT)
 
 Finally, set up your enviroment variables in the .env.local file at the root of your project directory. It should look something like this:
 ```bash
