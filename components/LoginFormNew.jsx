@@ -24,7 +24,7 @@ const handleLogin = async (formData, router)  => {
   }
 };
 
-export default LoginForm = () => {
+export default function LoginFormNew  () {
   const router = useRouter();
   return (
     <Box
