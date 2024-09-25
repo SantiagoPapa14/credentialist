@@ -5,16 +5,12 @@ import AddIcon from '@mui/icons-material/Add';
 import { encrypt } from "@/lib/cryptoLib";
 import '@/styles/globals.css';
 
-import { useRouter } from 'next/navigation'; // Updated import
-
 export default function AddPasswordButton() {
     const [open, setOpen] = useState(false);
     const [username, setUsername] = useState('');
     const [key, setKey] = useState('');
     const [password, setPassword] = useState('');
     const [service, setService] = useState('');
-
-    const router = useRouter(); // Updated useRouter
 
     // Function to handle opening the popup
     const handleClickOpen = () => {
