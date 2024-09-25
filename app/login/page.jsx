@@ -1,4 +1,4 @@
-'use server';
+'use client';
 import { Box } from '@mui/material';
 import LoginForm from "@/components/LoginForm";
 import '@/styles/globals.css';
