@@ -18,8 +18,7 @@ const Home = () => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const result = await response.json();
-        const credentials = result.credentials;
-        setData(credentials);
+        setData(result.credentials);
       } catch (err) {
         if (err instanceof Error) {
           setError(err.message);
@@ -32,14 +31,22 @@ const Home = () => {
     };
 
     fetchData();
-  }, []); // Empty dependency array means this effect runs once on mount
+  }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+        <div className="loading-container">
+            <h1 className="loading-message">Loading...</h1>
+	      </div>
+    )
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return (
+      <div className="error-container">
+          <h1 className="error-message">Error: {error}</h1>
+      </div>
+  );
   }
 
   if (data) {
@@ -48,10 +55,14 @@ const Home = () => {
         <div style={{ height: 400, width: '100%' }}>
             <MyToolBar></MyToolBar>
             <CredentialsTable rows={data}></CredentialsTable>
-	    </div>
+	      </div>
     );
   } else {
-    return <>No books available right now...</>;
+    return (
+      <div className="empty-state-container">
+          <h2 className="empty-state-message">No data available</h2>
+      </div>
+  );
   }
 };
 
