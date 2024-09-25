@@ -60,7 +60,11 @@ export default function DecryptDialog({ open, handleClose, credential }) {
       <DialogActions>
         <Button onClick={closeDialog}>Close</Button>
         <Button
-          onClick={() => decryptPassword(credential, key)}
+          onClick={async () => {
+            await decryptPassword(credential, key);
+            closeDialog();
+
+          }}
           disabled={!key}
         >
           Decrypt
