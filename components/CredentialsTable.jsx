@@ -50,6 +50,7 @@ export default function CredentialsTable({ rows }) {
                 <TableCell align="right">
                   <Button
                     variant="contained"
+                    style={{ marginRight: '10px' }}
                     onClick={() => {
                       handleClickDecrypt(credential);
                     }}
