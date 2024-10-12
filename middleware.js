@@ -5,5 +5,10 @@ export async function middleware(request) {
 }
 
 export const config = {
-  matcher: ['/credentials', '/api/(.*)',]
+  matcher: [
+    '/credentials',
+    '/api/getUsernames',
+    '/api/getEncrypted',
+    '/api/uploadPassword',
+    ],
 }

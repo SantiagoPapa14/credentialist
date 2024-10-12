@@ -1,21 +1,22 @@
-'use client';
 import React from "react";
 import { Box, Typography, TextField, Button } from "@mui/material";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 
-const handleLogin = async (formData, router)  => {
+const handleRegister = async (formData, router) => {
   try {
-    const response = await fetch("https://localhost:3000/api/login", {
+    console.log("Form data:", formData);
+    const response = await fetch("https://localhost:3000/api/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
     });
-    if (response.status == 200) {
-      router.replace("/credentials");
+
+    if (response.status == 201) {
+      router.push("/login");
     } else {
       console.error("Error:", response.statusText);
     }
@@ -24,7 +25,7 @@ const handleLogin = async (formData, router)  => {
   }
 };
 
-export default function LoginForm  () {
+const LoginForm = () => {
   const router = useRouter();
   return (
     <Box
@@ -32,13 +33,13 @@ export default function LoginForm  () {
       onSubmit={async (event) => {
         event.preventDefault();
         const form = event.target;
-        const formData= {
-          username: (form.elements.namedItem("username") )
+        const formData = {
+          username: (form.elements.namedItem("username"))
             .value,
-          password: (form.elements.namedItem("password") )
+          password: (form.elements.namedItem("password"))
             .value,
         };
-        await handleLogin(formData, router);
+        await handleRegister(formData, router);
       }}
       sx={{
         display: "flex",
@@ -70,7 +71,7 @@ export default function LoginForm  () {
         required
         id="outlined-required"
         name="username"
-        label="Username"
+        label="New Username"
         defaultValue=""
         sx={{ mt: 3, mb: 2 }}
       />
@@ -80,14 +81,16 @@ export default function LoginForm  () {
         id="outlined-required"
         name="password"
         type="password"
-        label="Password"
+        label="New Password"
         defaultValue=""
         sx={{ mt: 3, mb: 2 }}
       />
       <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-        Sign In
+        Register
       </Button>
-      <Link href="/register">Sign up now!</Link>
+      <Link href="/login">Already have an account?</Link>
     </Box>
   );
 };
+
+export default LoginForm;
